@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Digital Express ✨ Emmanuel A - IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .btn-glow:active { transform: scale(0.95); }
+        .loader { border: 3px solid #f3f3f3; border-top: 3px solid #eab308; border-radius: 50%; width: 20px; height: 20px; animation: spin 0.8s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .gradient-text { background: linear-gradient(90deg, #eab308, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 pb-32">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 glass border-b border-slate-200 px-6 py-4 flex justify-between items-center">
+        <span class="text-xl font-800 tracking-tighter uppercase">Propriété de : <span class="text-yellow-500">Emmanuel A</span></span>
+        <div class="bg-yellow-100 text-yellow-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase italic">Expert ✨ IA</div>
+    </nav>
+
+    <!-- En-tête Dynamique -->
+    <header class="px-6 py-10 bg-slate-900 text-white rounded-b-[40px] shadow-2xl">
+        <h1 class="text-3xl font-800 leading-tight">Boostez votre <span class="gradient-text">Business</span></h1>
+        <p class="text-slate-400 mt-3 text-sm">Design Pro & Intelligence Artificielle par Emmanuel A.</p>
+    </header>
+
+    <!-- Section des Outils IA -->
+    <section class="px-6 -mt-8 space-y-6">
+        
+        <!-- Outil : Publicité & Scripts -->
+        <div class="bg-white p-6 rounded-[32px] shadow-xl shadow-slate-200/60 border border-slate-100">
+            <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center mr-4 text-2xl">💡</div>
+                <div>
+                    <h3 class="font-bold text-slate-800">Scripts & Pubs ✨</h3>
+                    <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Rédaction Intelligente</p>
+                </div>
+            </div>
+            <textarea id="adInput" class="w-full p-4 bg-slate-50 border-none rounded-2xl text-sm mb-4 focus:ring-2 focus:ring-yellow-500 outline-none placeholder:text-slate-300" rows="2" placeholder="Ex: Restaurant d'Atassi à Fidjrossé..."></textarea>
+            <div class="grid grid-cols-2 gap-2 mb-4">
+                <button onclick="runTool('ad')" id="btn-ad" class="bg-slate-900 text-white py-3 rounded-xl text-xs font-bold btn-glow flex justify-center items-center">
+                    Post Facebook ✨
+                </button>
+                <button onclick="runTool('script')" id="btn-script" class="bg-yellow-500 text-black py-3 rounded-xl text-xs font-bold btn-glow flex justify-center items-center">
+                    Script Video ✨
+                </button>
+            </div>
+            <div id="res-ad" class="mt-2 p-4 bg-yellow-50 rounded-2xl text-sm text-yellow-900 hidden border border-yellow-100 whitespace-pre-wrap"></div>
+        </div>
+
+        <!-- Outil : Audit de Photo -->
+        <div class="bg-white p-6 rounded-[32px] shadow-xl shadow-slate-200/60 border border-slate-100">
+            <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mr-4 text-2xl">📸</div>
+                <div>
+                    <h3 class="font-bold text-slate-800">Audit Visuel ✨</h3>
+                    <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Analyse par l'IA</p>
+                </div>
+            </div>
+            <input type="file" id="imgInput" class="hidden" onchange="previewImg()">
+            <label id="dropzone" for="imgInput" class="w-full border-2 border-dashed border-slate-200 py-10 rounded-2xl flex flex-col items-center justify-center mb-4 transition-all hover:border-blue-400">
+                <span id="previewText" class="text-xs text-slate-400 text-center px-4">Chargez une photo de votre produit</span>
+            </label>
+            <button onclick="runTool('img')" id="btn-img" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold btn-glow flex justify-center items-center shadow-lg shadow-blue-600/20">
+                Analyser ma photo ✨
+            </button>
+            <div id="res-img" class="mt-4 p-4 bg-blue-50 rounded-2xl text-[11px] text-blue-900 hidden leading-relaxed border border-blue-100"></div>
+        </div>
+
+        <!-- Outil : Vente WhatsApp -->
+        <div class="bg-white p-6 rounded-[32px] shadow-xl shadow-slate-200/60 border border-slate-100">
+            <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center mr-4 text-2xl">💬</div>
+                <div>
+                    <h3 class="font-bold text-slate-800">Vente WhatsApp ✨</h3>
+                    <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Conclure vos deals</p>
+                </div>
+            </div>
+            <input type="text" id="waInput" class="w-full p-4 bg-slate-50 border-none rounded-2xl text-sm mb-4 outline-none placeholder:text-slate-300" placeholder="Le client dit : 'C'est trop cher'">
+            <button onclick="runTool('wa')" id="btn-wa" class="w-full bg-green-600 text-white py-4 rounded-2xl font-bold btn-glow flex justify-center items-center">
+                Réponse Magique ✨
+            </button>
+            <div id="res-wa" class="mt-4 p-4 bg-green-50 rounded-2xl text-sm text-green-900 hidden italic border border-green-100"></div>
+        </div>
+
+    </section>
+
+    <!-- Portfolio avec tes images réelles -->
+    <section class="px-6 mt-12 mb-10">
+        <div class="flex justify-between items-end mb-6">
+            <h2 class="text-xl font-800">Mon Portfolio</h2>
+            <span class="text-[10px] font-bold text-yellow-600 bg-yellow-50 px-2 py-1 rounded-md italic">DESIGN 2026</span>
+        </div>
+        <div class="flex overflow-x-auto pb-4 gap-6 no-scrollbar">
+            <!-- Affiche Restaurant -->
+            <div class="min-w-[280px] bg-white rounded-[32px] overflow-hidden shadow-md border border-slate-100">
+                <img src="Noir Blanc Minimaliste Élégant Restaurant Affiche_20260329_002509_0000.jpg" class="w-full h-44 object-cover" alt="[Image d'une affiche de restaurant]">
+                <div class="p-5"><p class="font-bold text-sm text-slate-700 text-center uppercase tracking-tighter">Gastronomie & Restaurant</p></div>
+            </div>
+            <!-- Post Fashion -->
+            <div class="min-w-[280px] bg-white rounded-[32px] overflow-hidden shadow-md border border-slate-100">
+                <img src="Post Instagram Fashion Mode Écologie Simple Minimaliste_20260329_003920_0000.jpg" class="w-full h-44 object-cover" alt="[Image d'un post mode]">
+                <div class="p-5"><p class="font-bold text-sm text-slate-700 text-center uppercase tracking-tighter">Mode & Lifestyle</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bouton WhatsApp Emmanuel A -->
+    <div class="fixed bottom-6 left-6 right-6 z-50">
+        <a href="https://wa.me/2290146707172" class="w-full bg-slate-900 text-white py-5 rounded-[24px] font-bold shadow-2xl flex items-center justify-center space-x-3 btn-glow border-t border-white/10">
+            <span class="text-xl">🚀</span>
+            <span>Commander à Emmanuel A</span>
+        </a>
+    </div>
+
+    <script>
+        const apiKey = ""; 
+
+        async function callGemini(prompt, isImage = false, fileData = null) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            
+            let systemPrompt = "Tu es l'assistant IA de Emmanuel A, expert en marketing digital à Cotonou. Ton but est d'aider les entrepreneurs béninois à vendre plus. Utilise un langage dynamique, des emojis locaux (🇧🇯, 🍲, 👗) et mentionne parfois des lieux comme Fidjrossé, Calavi, Ganhi ou Akpakpa.";
+
+            let payload;
+            if (isImage) {
+                payload = {
+                    contents: [{
+                        parts: [
+                            { text: "Analyse cette photo pour un commerce au Bénin. Donne 3 conseils critiques pour améliorer le marketing visuel." },
+                            { inlineData: { mimeType: "image/png", data: fileData } }
+                        ]
+                    }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] }
+                };
+            } else {
+                payload = {
+                    contents: [{ parts: [{ text: prompt }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] }
+                };
+            }
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json();
+                return data.candidates?.[0]?.content?.parts?.[0]?.text || "Erreur, réessayez.";
+            } catch (e) {
+                return "Erreur de connexion.";
+            }
+        }
+
+        async function runTool(type) {
+            const btn = document.getElementById(`btn-${type}`);
+            const res = document.getElementById(type === 'ad' || type === 'script' ? 'res-ad' : `res-${type}`);
+            const originalText = btn.innerHTML;
+            
+            if ((type === 'ad' || type === 'script') && !document.getElementById('adInput').value) return;
+            if (type === 'wa' && !document.getElementById('waInput').value) return;
+            if (type === 'img' && !document.getElementById('imgInput').files[0]) return;
+
+            btn.innerHTML = '<div class="loader"></div>';
+            btn.disabled = true;
+
+            let result;
+            if (type === 'ad') {
+                result = await callGemini(`Rédige une publicité Facebook percutante pour : ${document.getElementById('adInput').value}.`);
+            } else if (type === 'script') {
+                result = await callGemini(`Rédige un script TikTok viral pour : ${document.getElementById('adInput').value}.`);
+            } else if (type === 'wa') {
+                result = await callGemini(`Le client dit : "${document.getElementById('waInput').value}". Rédige une réponse persuasive.`);
+            } else if (type === 'img') {
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result.split(',')[1];
+                    const auditResult = await callGemini("", true, base64);
+                    res.innerText = auditResult;
+                    res.classList.remove('hidden');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                };
+                reader.readAsDataURL(document.getElementById('imgInput').files[0]);
+                return;
+            }
+
+            res.innerText = result;
+            res.classList.remove('hidden');
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }
+
+        function previewImg() {
+            const file = document.getElementById('imgInput').files[0];
+            if (file) {
+                document.getElementById('previewText').innerText = "✓ Photo : " + file.name;
+                document.getElementById('dropzone').classList.add('bg-blue-50', 'border-blue-400');
+            }
+        }
+    </script>
+</body>
+</html>
